@@ -19,7 +19,7 @@ def rosenbrock(x):
     return (ra - x[0]) ** 2 + rb * (x[1] - x[0] ** 2) ** 2
 
 
-# Rosenbrock函数的梯度向量（对每个变量求偏导）
+# Rosenbrock函数的梯度向量
 def jacobian(x):
     return np.array([-4 * rb * x[0] * (x[1] - x[0] ** 2) - 2 * (ra - x[0]), 2 * rb * (x[1] - x[0] ** 2)])
 
@@ -78,6 +78,8 @@ def newton(x0):
 
     return [W, epo, count_list, delta_list]
 
+ 
+
 
 # 结果图
 def Draw_Figure(W, count_list, delta_list):
@@ -89,8 +91,8 @@ def Draw_Figure(W, count_list, delta_list):
     [x1, x2] = np.meshgrid(X1, X2)
     f = (ra - x1) ** 2 + rb * (x2 - x1 ** 2) ** 2  # 给定的函数
     plt.contour(x1, x2, f, 30)  # 画出函数的30条轮廓线
-    plt.plot(W[0, :], W[1, :], 'g*-')  # 画出迭代点收敛的轨迹
-    plt.plot(W[0, -1], W[1, -1], 'g*-', c='r')
+    plt.plot(W[0, :], W[1, :], 'go-')  # 画出迭代点收敛的轨迹
+    plt.plot(W[0, -1], W[1, -1], 'go-', c='r')
 
     plt.subplot(122)
     plt.title("Delta", fontsize=20)
@@ -105,8 +107,9 @@ def Draw_Figure(W, count_list, delta_list):
     return 0
 
 
+
 if __name__ == "__main__":
-    x0 = np.array([-3.0, -10.0])
+    x0 = np.array([100.0, 100.0])
     list_out = newton(x0)  # Newton法
     W = list_out[0]
     epo = list_out[1]

@@ -535,8 +535,8 @@ def Draw_Figure(W, count_list, delta_list):
     [x1, x2] = np.meshgrid(X1, X2)
     f = (ra - x1) ** 2 + rb * (x2 - x1 ** 2) ** 2  # 给定的函数
     plt.contour(x1, x2, f, 30)  # 画出函数的30条轮廓线
-    plt.plot(W[0, :], W[1, :], 'g*-')  # 画出迭代点收敛的轨迹
-    plt.plot(W[0, -1], W[1, -1], 'g*-', c='r')
+    plt.plot(W[0, :], W[1, :], 'go-')  # 画出迭代点收敛的轨迹
+    plt.plot(W[0, -1], W[1, -1], 'go-', c='r')
 
     plt.subplot(122)
     plt.title("Delta", fontsize=20)
@@ -554,13 +554,13 @@ def Draw_Figure(W, count_list, delta_list):
 if __name__ == "__main__":
     x0 = np.array([-3.0, -10.0])
     # list_out = steepest(x0)  # 最速下降法
-    # list_out = frcg(x0)  # 共轭梯度法
+    list_out = frcg(x0)  # 共轭梯度法
     # list_out = momentum(x0)  # 动量法
     # list_out = nesterov_momentum(x0)  # Nesterov动量法
     # list_out = adagrad(x0)  # Adagrad法
     # list_out = rmsprop(x0)  # RMSProp法
     # list_out = adadelta(x0)  # Adadelta法
-    list_out = adam(x0)  # Adam法
+    # list_out = adam(x0)  # Adam法
     W = list_out[0]
     epo = list_out[1]
     count_list = list_out[2]

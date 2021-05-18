@@ -3,7 +3,7 @@ import imageio
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso
 import warnings
-
+import os
 
 warnings.filterwarnings("ignore")
 
@@ -82,8 +82,10 @@ def restore(img, filename):
     return resImg
 
 if __name__ == '__main__':
+    os.chdir('/root/mytuyouhua/实验一')
     noiseRatio = 0.6
-    Img = im2double(imageio.imread('mypicture.png'))
+    
+    Img = im2double(imageio.imread('./mypicture.png'))
     Img[(Img == 0)] = 0.01
     rows, cols, channels = Img.shape
 

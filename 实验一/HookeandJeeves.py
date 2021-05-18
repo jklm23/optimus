@@ -21,8 +21,8 @@ def Draw_Figure(x1_list, x2_list, count_list, delta_list):
     [x1, x2] = np.meshgrid(X1, X2)
     f = (ra - x1) ** 2 + rb * (x2 - x1 ** 2) ** 2  # 给定的函数
     plt.contour(x1, x2, f, 40)  # 画出函数的30条轮廓线
-    plt.plot(x1_list, x2_list, 'g*-')  # 画出迭代点收敛的轨迹
-    plt.plot(x1_list[-1], x2_list[-1], 'g*-', c='r')    # 最终点的位置
+    plt.plot(x1_list, x2_list, 'go-')  # 画出迭代点收敛的轨迹
+    plt.plot(x1_list[-1], x2_list[-1], 'go-', c='r')    # 最终点的位置
 
     plt.subplot(122)
     plt.title("Delta", fontsize=20)
@@ -62,12 +62,12 @@ def HookeandJeeves(xk):
 
     while delta > epsilon:
         # 输出本次搜索的基本信息
-        print('进入第', k, '轮迭代')
-        print('基点:', xk)
-        print('基点处函数值:', rosenbrock(xk))
-        print('探测出发点为:', yk)
-        print('探测出发点处的函数值', rosenbrock(yk))
-        print('探测搜索步长delta:', delta)
+        # print('进入第', k, '轮迭代')
+        # print('基点:', xk)
+        # print('基点处函数值:', rosenbrock(xk))
+        # print('探测出发点为:', yk)
+        # print('探测出发点处的函数值', rosenbrock(yk))
+        # print('探测搜索步长delta:', delta)
 
         # 进入探测移动
         for i in range(dim):
@@ -83,8 +83,8 @@ def HookeandJeeves(xk):
                 t1, t2 = rosenbrock(yk - delta * e), rosenbrock(yk)
                 if t1 < t2:
                     yk = yk - delta * e
-            print('第', i + 1, '次探测得到的点为', yk)
-            print('函数值', rosenbrock(yk))
+            # print('第', i + 1, '次探测得到的点为', yk)
+            # print('函数值', rosenbrock(yk))
 
         # 确定新的基点和计算新的探测初始点
         t1, t2 = rosenbrock(yk), rosenbrock(xk)
@@ -99,7 +99,7 @@ def HookeandJeeves(xk):
 
         k += 1
 
-        print("\n")
+        # print("\n")
 
     print('Rosenbrock函数中的a = %d, b = %d:' % (ra, rb))
     print('初始点为:', x0)
@@ -112,6 +112,6 @@ def HookeandJeeves(xk):
 
 if __name__ == '__main__':
 
-    x0 = np.array([-3.0, -10.0])
+    x0 = np.array([0.3, 0.3])
     x1_list, x2_list, count_list, delta_list = HookeandJeeves(x0)
     Draw_Figure(x1_list, x2_list, count_list, delta_list)
